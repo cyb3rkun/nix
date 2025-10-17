@@ -33,16 +33,6 @@
 		# (pkgs.writeShellScriptBin "my-hello" ''
 		#   echo "Hello, ${config.home.username}!"
 		# '')
-		pkgs.rofi-wayland
-		pkgs.swaylock
-		pkgs.waybar
-		pkgs.fish
-		pkgs.hypr
-		pkgs.neovim
-		pkgs.swaybg
-		pkgs.grimblast
-		pkgs.wezterm
-		pkgs.dunst
 	];
 
 	# Home Manager is pretty good at managing dotfiles. The primary way to manage

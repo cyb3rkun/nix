@@ -4,9 +4,9 @@
 
 	inputs = {
 		# Specify the source of Home Manager and Nixpkgs.
-		nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+		nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
 		home-manager = {
-			url = "github:nix-community/home-manager";
+			url = "github:nix-community/home-manager/release-25.05";
 			inputs.nixpkgs.follows = "nixpkgs";
 		};
 	};
@@ -29,7 +29,7 @@
 					./home.nix
 					./nvim.nix
 					./wofi.nix
-					./rofi.nix
+					# ./rofi.nix # WARN: rofi not working yet
 					./fish.nix
 					./wezterm.nix
 					./hypr.nix
