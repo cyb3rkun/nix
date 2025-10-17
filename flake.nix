@@ -9,6 +9,7 @@
 			url = "github:nix-community/home-manager/release-25.05";
 			inputs.nixpkgs.follows = "nixpkgs";
 		};
+		nixgl.url = "github:guibou/nixGL";
 	};
 
 	outputs = {
@@ -29,7 +30,7 @@
 					./home.nix
 					./nvim.nix
 					./wofi.nix
-					# ./rofi.nix # WARN: rofi not working yet
+					./rofi.nix # WARN: rofi not working yet
 					./fish.nix
 					./wezterm.nix
 					./hypr.nix

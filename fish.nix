@@ -4,6 +4,6 @@
 	pkgs,
 	...
 }: {
-	programs.fish.enable = true;
+	# programs.fish.enable = true;
 	xdg.configFile."fish".source = ./dotfiles/fish;
 }
