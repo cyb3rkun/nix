@@ -28,6 +28,11 @@
 				modules = [
 					./home.nix
 					./nvim.nix
+					./wofi.nix
+					./rofi.nix
+					./fish.nix
+					./wezterm.nix
+					./hypr.nix
 				];
 
 				# Optionally use extraSpecialArgs
