@@ -102,7 +102,8 @@ return {
 			"omnisharp",
 			"gopls",
 			"fish_lsp",
-			"rnix",
+			-- "rnix",
+			"nil"
 			-- "bacon-ls"
 			-- "buf",
 			-- "black"

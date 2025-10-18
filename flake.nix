@@ -29,7 +29,7 @@
 					./home.nix
 					./nvim.nix
 					./wofi.nix
-					./rofi.nix # WARN: rofi not working yet
+					./rofi.nix 
 					./fish.nix
 					./wezterm.nix
 					./hypr.nix

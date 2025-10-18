@@ -21,6 +21,7 @@ return {
 			popup_border_style = "rounded",
 			enable_git_status = true,
 			use_libuv_file_watcher = true,
+			-- sources = {"filesystem", "document_symbols"},
 			window = {
 				position = "left",
 				width = 25,
