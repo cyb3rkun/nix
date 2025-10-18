@@ -2,13 +2,23 @@
 {
 	config,
 	pkgs,
+	lib,
+	nixgl,
+	specialArgs,
 	...
-}: {
+}: let
+	nxgl =
+		import ./nixgl.nix {
+			inherit pkgs;
+			inherit lib;
+			inherit config;
+			inherit specialArgs;
+		};
+in {
 	# Home Manager needs a bit of information about you and the paths it should
 	# manage.
 	home.username = "cyb3r";
 	home.homeDirectory = "/home/cyb3r";
-
 
 	# This value determines the Home Manager release that your configuration is
 	# compatible with. This helps avoid breakage when a new Home Manager release
@@ -19,9 +29,11 @@
 	# release notes.
 	home.stateVersion = "25.05"; # Please read the comment before changing.
 
+	# nixgl.enable = true;
+	# nixgl.packages = [nixgl.nixglMesa];
 	# The home.packages option allows you to install Nix packages into your
 	# environment.
-	home.packages = [
+	home.packages = with pkgs; [
 		# # It is sometimes useful to fine-tune packages, for example, by applying
 		# # overrides. You can do that directly here, just don't forget the
 		# # parentheses. Maybe you want to install Nerd Fonts with a limited number of
@@ -34,6 +46,17 @@
 		# (pkgs.writeShellScriptBin "my-hello" ''
 		#   echo "Hello, ${config.home.username}!"
 		# '')
+		git
+		wget
+		# wezterm
+		(nxgl.nixGLVulkanMesaWrap wezterm)
+		waybar
+		fish
+		dunst
+		wlogout
+		swaybg
+		rofi
+		grimblast
 	];
 
 	# Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -68,7 +91,7 @@
 	#  /etc/profiles/per-user/cyb3r/etc/profile.d/hm-session-vars.sh
 	#
 	home.sessionVariables = {
-		# EDITOR = "emacs";
+		EDITOR = "nvim";
 	};
 
 	# Let Home Manager install and manage itself.

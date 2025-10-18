@@ -1,4 +1,4 @@
-# .config/home-manager/flake.nix
+# flake.nix
 {
 	description = "Home Manager configuration of cyb3r";
 
@@ -9,15 +9,22 @@
 			url = "github:nix-community/home-manager/release-25.05";
 			inputs.nixpkgs.follows = "nixpkgs";
 		};
+		nixgl.url = "github:nix-community/nixGL";
 	};
 
 	outputs = {
+		nixgl,
 		nixpkgs,
 		home-manager,
 		...
 	}: let
-		system = "x86_64-linux";
-		pkgs = nixpkgs.legacyPackages.${system};
+		# system = "x86_64-linux";
+		# pkgs = nixpkgs.legacyPackages.${system};
+		pkgs =
+			import nixpkgs {
+				system = "x86_64-linux";
+				overlays = [nixgl.overlay];
+			};
 	in {
 		homeConfigurations."cyb3r" =
 			home-manager.lib.homeManagerConfiguration {
@@ -29,7 +36,7 @@
 					./home.nix
 					./nvim.nix
 					./wofi.nix
-					./rofi.nix 
+					./rofi.nix
 					./fish.nix
 					./wezterm.nix
 					./hypr.nix
