@@ -6,13 +6,11 @@
 and enable experimental features by adding the following line to 
 
 ```ssh
-/etc/nix/nix.conf
+# /etc/nix/nix.conf
 
 experimental-features = nix-command flakes
-
-
-
 ```
+
 ```sh
 nix run nixpkgs#gh -- auth login
 nix run nixpkgs#gh -- repo clone cyb3rkun/nix ~/nix
