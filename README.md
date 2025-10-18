@@ -1,7 +1,7 @@
 # to bootstrap nix
 
 - make sure to install nix if you're not on nixos:
-    [NixOS](https://nixos.org/download/)
+[NixOS](https://nixos.org/download/)
 
 and enable experimental features by adding the following line to 
 
