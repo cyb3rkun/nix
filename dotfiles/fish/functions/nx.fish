@@ -1,3 +1,3 @@
-function nx --wraps='cd ~/nix/dotfiles/fish/' --description 'alias nx=cd ~/nix/dotfiles/fish'
-	cd ~/nix/dotfiles/fish
+function nx --wraps='cd ~/nix' --description 'alias nx=cd ~/nix'
+	cd ~/nix
 end
