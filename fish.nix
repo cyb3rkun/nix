@@ -1,4 +1,4 @@
-# .config/home-manager/fish.nix
+# fish.nix
 {
 	config,
 	pkgs,

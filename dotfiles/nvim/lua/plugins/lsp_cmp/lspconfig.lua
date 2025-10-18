@@ -103,7 +103,7 @@ return {
 			"gopls",
 			"fish_lsp",
 			-- "rnix",
-			"nil"
+			"nil_ls"
 			-- "bacon-ls"
 			-- "buf",
 			-- "black"
