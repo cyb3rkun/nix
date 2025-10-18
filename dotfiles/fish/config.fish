@@ -23,7 +23,7 @@ alias hw='hwinfo --short'                                   # Hardware Info
 # overwrite greeting
 # potentially disabling fastfetch
 function fish_greeting
-   # smth smth
+	# smth smth
 end
 carapace _carapace | source
 

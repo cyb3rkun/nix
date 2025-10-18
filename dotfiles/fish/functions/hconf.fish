@@ -1,4 +1,4 @@
-function hconf --wraps='cd ~/.config/hypr' --description 'alias hconf=cd ~/.config/hypr'
-  cd ~/.config/hypr $argv
-        
+function hconf --wraps='cd ~/nix/dotfiles/hypr' --description 'alias hconf=cd ~/nix/dotfiles/hypr'
+	cd ~/nix/dotfiles/hypr $argv
+
 end

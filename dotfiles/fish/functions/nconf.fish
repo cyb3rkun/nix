@@ -1,4 +1,4 @@
-function nconf --wraps='cd ~/.config/nvim' --description 'alias nconf=cd ~/.config/nvim'
-  cd ~/.config/nvim $argv
+function nconf --wraps='cd ~/nix/dotfiles/nvim/' --description 'alias nconf=cd ~/nix/dotfiles/nvim'
+  cd ~/nix/dotfiles/nvim $argv
         
 end

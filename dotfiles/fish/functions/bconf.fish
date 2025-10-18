@@ -1,4 +1,4 @@
-function bconf --wraps='cd ~/.config/waybar' --description 'alias bconf=cd ~/.config/waybar'
-  cd ~/.config/waybar $argv
-        
+function bconf --wraps='cd ~/nix/dotfiles/waybar' --description 'alias bconf=cd ~/nix/dotfiles/waybar'
+	cd ~/nix/dotfiles/waybar $argv
+
 end
