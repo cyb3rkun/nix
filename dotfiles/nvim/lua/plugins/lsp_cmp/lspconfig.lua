@@ -23,14 +23,13 @@ return {
 	config = function()
 		local lsp = require("lspconfig")
 
-		-- local cmp_nvim_lsp = require("cmp_nvim_lsp")
-
 		-- NOTE: Set default capabilities for lsp servers
 		-- local capabilities = vim.tbl_deep_extend(
 		-- 	"force",
 		-- 	vim.lsp.protocol.make_client_capabilities(),
 		-- 	cmp_nvim_lsp.default_capabilities()
 		-- )
+		--
 		---@diagnostic disable-next-line: undefined-global
 		local capabilities = require("blink.cmp").get_lsp_capabilities(capabilities)
 
@@ -114,65 +113,43 @@ return {
 
 
 		-- NOTE: Basic LSP setup
-		for _, ls in ipairs(servers) do
-			lsp[ls].setup({
-				capabilities = capabilities,
-				-- on_attach = lsp_attach,
-			})
-		end
+		-- for _, ls in ipairs(servers) do
+		-- 	lsp[ls].setup({
+		-- 		capabilities = capabilities,
+		-- 		-- on_attach = lsp_attach,
+		-- 	})
+		-- end
 
 		-- lsp.gdscript.setup({capabilities = vim.lsp.protocol.make_client_capabilities()})
 
-		lsp.lua_ls.setup({
-			settings = {
-				Lua = {
-					runtime = {
-						version = "Lua 5.4",
-						path = {
-							"?.lua",
-							"?/init.lua",
-							vim.fn.expand("~/.luarocks/share/lua/5.4/?.lua"),
-							vim.fn.expand("~/.luarocks/share/lua/5.4/?/init.lua"),
-							"/usr/share/5.4/?.lua",
-							"/usr/share/lua/5.4/?/init.lua",
-						},
-					},
-					workspace = {
-						library = {
-							vim.fn.expand("~/.luarocks/share/lua/5.4"),
-							"/usr/share/lua/5.4",
-						},
-					},
-				},
-			},
-		})
-		lsp.bacon_ls.setup({
-			init_options = {
-				updateOnSave = true,
-				updateOnSaveWaitMillis = 1000,
-			},
-		})
-		lsp.pylsp.setup({
-			settings = {
-				pylsp = {
-					plugins = {
-						pyflakes = { enabled = false },
-						pycodestyle = { enabled = false },
-						autopep8 = { enabled = false },
-						yapf = { enabled = false },
-						mccabe = { enabled = false },
-						pylsp_mypy = { enabled = false },
-						pylsp_black = { enabled = false },
-						pylsp_isort = { enabled = false },
-					},
-				},
-			},
-		})
-		lsp.biome.setup({
-			-- on_attach = lsp_attach,
-			capabilities = capabilities,
-			filetypes = { "js", "ts", "json" },
-		})
+		
+		-- lsp.bacon_ls.setup({
+		-- 	init_options = {
+		-- 		updateOnSave = true,
+		-- 		updateOnSaveWaitMillis = 1000,
+		-- 	},
+		-- })
+		-- lsp.pylsp.setup({
+		-- 	settings = {
+		-- 		pylsp = {
+		-- 			plugins = {
+		-- 				pyflakes = { enabled = false },
+		-- 				pycodestyle = { enabled = false },
+		-- 				autopep8 = { enabled = false },
+		-- 				yapf = { enabled = false },
+		-- 				mccabe = { enabled = false },
+		-- 				pylsp_mypy = { enabled = false },
+		-- 				pylsp_black = { enabled = false },
+		-- 				pylsp_isort = { enabled = false },
+		-- 			},
+		-- 		},
+		-- 	},
+		-- })
+		-- lsp.biome.setup({
+		-- 	-- on_attach = lsp_attach,
+		-- 	capabilities = capabilities,
+		-- 	filetypes = { "js", "ts", "json" },
+		-- })
 
 		-- lsp.rust_analyzer.setup({
 		-- 	-- on_attach = lsp_attach,
@@ -194,33 +171,33 @@ return {
 		-- 	},
 		-- })
 
-		lsp.ast_grep.setup({
-			-- these are the default options, you only need to specify
-			-- options you'd like to change from the default
-			cmd = { "ast-grep", "lsp" },
-			filetypes = {
-				"c",
-				"cpp",
-				"rust",
-				"go",
-				"java",
-				"python",
-				"javascript",
-				"typescript",
-				"html",
-				"css",
-				"kotlin",
-				"dart",
-				"lua",
-			},
-			root_dir = require("lspconfig.util").root_pattern("sgconfig.yaml", "sgconfig.yml"),
-		})
-		-- NOTE: Advanced LSP setups
-		lsp.gdshader_lsp.setup({
-			capabilities = capabilities,
-			-- on_attach = lsp_attach,
-			cmd = { "/home/cyb3rkun/.local/share/gdshader-lsp/gdshader-lsp" },
-		})
+		-- lsp.ast_grep.setup({
+		-- 	-- these are the default options, you only need to specify
+		-- 	-- options you'd like to change from the default
+		-- 	cmd = { "ast-grep", "lsp" },
+		-- 	filetypes = {
+		-- 		"c",
+		-- 		"cpp",
+		-- 		"rust",
+		-- 		"go",
+		-- 		"java",
+		-- 		"python",
+		-- 		"javascript",
+		-- 		"typescript",
+		-- 		"html",
+		-- 		"css",
+		-- 		"kotlin",
+		-- 		"dart",
+		-- 		"lua",
+		-- 	},
+		-- 	root_dir = require("lspconfig.util").root_pattern("sgconfig.yaml", "sgconfig.yml"),
+		-- })
+		-- -- NOTE: Advanced LSP setups
+		-- lsp.gdshader_lsp.setup({
+		-- 	capabilities = capabilities,
+		-- 	-- on_attach = lsp_attach,
+		-- 	cmd = { "/home/cyb3rkun/.local/share/gdshader-lsp/gdshader-lsp" },
+		-- })
 
 		
 	end,

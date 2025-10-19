@@ -1,139 +1,64 @@
-local function on_attach(client, bufnr)
-	local keymap = vim.keymap.set
-	-- NOTE: using the keymap variable is equivelent to using vim.keymap.set("mode n=normal v=visual i=insert","key", action)
+---@diagnostic disable-next-line: undefined-global
+local capabilities = require("blink.cmp").get_lsp_capabilities(capabilities)
 
-	-- NOTE: Define a keymaps variable to store our keymaps as a function
-	---@diagnostic disable-next-line: unused-local
-	local keymaps = function(client, bufnr)
-		-- NOTE: rename references throughout an entire file?
-		keymap("n", "<leader>rn", vim.lsp.buf.rename, {
-			buffer = bufnr,
-			desc = "[R]e[n]ame",
-		})
+vim.api.nvim_create_autocmd("LspAttach", {
+	callback = function(ev)
+		local bufnr = ev.buf
+		local client = vim.lsp.get_client_by_id(ev.data.client_id)
 
-		-- NOTE: Keymap to get code actions
-		keymap("n", "<leader>ca", vim.lsp.buf.code_action, {
-			buffer = bufnr,
-			desc = "[C]ode [A]ction",
-		})
+		local keymaps = require("config.lsp_mappings")
+		keymaps(client, bufnr)
 
-		-- NOTE: Keymap to go to definition
-		keymap("n", "<leader>gd", vim.lsp.buf.definition, {
-			buffer = bufnr,
-			desc = "[G]oto [D]efinition",
-		})
+		-- if client.server_capabilities.inlayHintProvider then
+		-- 	vim.lsp.inlay_hint.enable(true)
+		-- end
 
-		-- NOTE: Keymap to go to Declaration
-		keymap("n", "<leader>gD", vim.lsp.buf.declaration, {
-			buffer = bufnr,
-			desc = "[G]oto [D]eclaration",
-		})
+		vim.api.nvim_buf_create_user_command(bufnr, "Format", function()
+			vim.lsp.buf.format()
+		end, { desc = "LSP: Format current buffer with" })
+	end,
+})
+-- vim.lsp.config("clangd", { on_attach = on_attach, capabilities = capabilities })
+-- vim.lsp.config("lua_ls", { on_attach = on_attach, capabilities = capabilities })
 
-		-- NOTE: Keymap to go to references
-		-- keymap(
-		-- 	"n",
-		-- 	"<leader>gr",
-		-- 	require("telescope.builtin").lsp_references,
-		-- 	{ buffer = bufnr, desc = "[G]oto [R]eferences" }
-		-- )
+vim.lsp.config("*", {
+	-- on_attach = on_attach,
+	capabilities = capabilities,
+})
 
-		-- NOTE: keymap to go to implementation
-		keymap("n", "<leader>gI", vim.lsp.buf.implementation, {
-			buffer = bufnr,
-			desc = "[G]oto [I]mplementation",
-		})
+local default_servers = {
+	-- "lua_ls",
+	"jdtls",
+	"gdscript",
+	-- "csharp_ls",
+	"bashls",
+	"marksman",
+	"html",
+	"cssls",
+	"eslint",
+	"ruff",
+	"omnisharp",
+	"gopls",
+	"fish_lsp",
+	-- "rnix",
+	"nil_ls",
+	-- "bacon-ls"
+	-- "buf",
+	-- "black"
+	-- "pylsp",
+	-- "biome", -- For JS, TS and other web languages
+	-- "neorg-interim-ls",
+}
 
-		-- NOTE: find Type definition
-		keymap("n", "<leader>D", vim.lsp.buf.type_definition, {
-			buffer = bufnr,
-			desc = "Type [D]efinition",
-		})
-
-		-- NOTE: show lsp document symbols in telescope UI
-		-- keymap(
-		-- 	"n",
-		-- 	"<leader>ds",
-		-- 	require("telescope.builtin").lsp_document_symbols,
-		-- 	{ buffer = bufnr, desc = "[D]ocument [S]ymbols" }
-		-- )
-
-		-- NOTE: show lsp dynamic symbols in telescope UI
-		-- keymap(
-		-- 	"n",
-		-- 	"<leader>ws",
-		-- 	require("telescope.builtin").lsp_dynamic_workspace_symbols,
-		-- 	{ buffer = bufnr, desc = "[W]orkspace [S]ymbols" }
-		-- )
-
-		-- NOTE: add a workspace folder
-		keymap(
-			"n",
-			"<leader>waf",
-			vim.lsp.buf.add_workspace_folder,
-			{ buffer = bufnr, desc = "[W]orkspace [A]dd [F]older" }
-		)
-
-		-- NOTE: Remove a workspace folder
-		keymap(
-			"n",
-			"<leader>wrf",
-			vim.lsp.buf.remove_workspace_folder,
-			{ buffer = bufnr, desc = "[W]orkspace [R]emove [F]older" }
-		)
-
-		-- NOTE: List workspace folders
-		keymap("n", "<leader>wlf", function()
-			print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-		end, {
-			buffer = bufnr,
-			desc = "[W]orkspace [L]ist [F]olders",
-		})
-
-		-- See `:help K` for why this keymap
-		-- NOTE: show documentation for what is currently under the cursor
-		keymap("n", "K", function()
-			vim.lsp.buf.hover({
-				border = "rounded",
-			})
-		end, {
-			buffer = bufnr,
-			desc = "Hover Documentation",
-		})
-		-- NOTE: show signature help for what is currently under the cursor
-		keymap("n", "<leader>k", vim.lsp.buf.signature_help, {
-			buffer = bufnr,
-			desc = "Signature Documentation",
-		})
-
-		keymap("n", "]d", function()
-			vim.diagnostic.jump({ count = 1, float = true })
-		end, {
-			desc = "Go to previous [D]iagnostic message",
-		})
-		-- NOTE: toggle virtual lines for diagnostics
-		Keymap("n", "<leader>sl", function()
-			local current = vim.diagnostic.config().virtual_lines
-			vim.diagnostic.config({
-				virtual_lines = not current,
-			})
-		end, { desc = "toggle virtual lines for Diagnostics" })
-		keymap("n", "[d", function()
-			vim.diagnostic.jump({ count = -1, float = true })
-		end, {
-			desc = "Go to next [D]iagnostic message",
-		})
-
-		keymap("n", "<leader>t", vim.diagnostic.open_float, {
-			desc = "Show diagnostic [E]rror messages",
-		})
-
-		keymap("n", "<leader>q", vim.diagnostic.setloclist, {
-			desc = "Open diagnostic [Q]uickfix list",
-		})
-	end
-
-	-- NOTE: return the keymaps variabl function when this file is called
-	return keymaps
+for _, s in ipairs(default_servers) do
+	vim.lsp.enable({ s })
 end
 
-vim.lsp.config("clangd", { on_attach = on_attach })
+vim.lsp.enable({ "clangd" })
+vim.lsp.enable({ "lua_ls" })
+vim.lsp.enable({ "biome" })
+vim.lsp.enable({ "pylsp" })
+vim.lsp.enable({ "ast_grep" })
+
+
+print("LSP Module loaded!")
