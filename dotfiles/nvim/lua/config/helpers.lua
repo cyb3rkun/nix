@@ -36,7 +36,7 @@ end
 -- To test a non-stdin formatter
 -- run_formatter({ "formatter_command", "arg1", "arg2" }, "/path/to/cwd")
 
-gdshader = function()
+Gdshader = function()
 	vim.lsp.start({
 		name = "gdshader-lsp",
 		cmd = { "/home/cyb3rkun/.local/share/gdshader-lsp/gdshader-lsp" },

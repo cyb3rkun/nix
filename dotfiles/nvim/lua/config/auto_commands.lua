@@ -22,6 +22,13 @@ autocmd("TextYankPost", {
 		})
 	end,
 })
+autocmd("ColorScheme", {
+	group = vim.api.nvim_create_augroup("Cyb3rVim-custom-highlights", { clear = true }),
+	callback = function()
+		vim.cmd("highlight YankHighlight guifg=#000000 guibg=#00FFFF")
+		vim.cmd("highlight YankHighlightClipboard guifg=#1d202f guibg=#ff9e64")
+	end,
+})
 
 -- NOTE: remove line numbers for neotree only
 autocmd("BufEnter", {
