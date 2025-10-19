@@ -54,9 +54,22 @@ vim.diagnostic.config({
 	virtual_lines = true,
 	underline = true,
 	float = {
-		border = "rounded"
-	}
-
+		border = "rounded",
+	},
+	signs = {
+		text = {
+			[vim.diagnostic.severity.ERROR] = " ",
+			[vim.diagnostic.severity.WARN] = " ",
+			[vim.diagnostic.severity.HINT] = " ",
+			[vim.diagnostic.severity.INFO] = " ",
+		},
+		linehl = {
+			[vim.diagnostic.severity.ERROR] = "ERROR",
+			[vim.diagnostic.severity.WARN] = "WARN",
+			[vim.diagnostic.severity.HINT] = "HINT",
+			[vim.diagnostic.severity.INFO] = "INFO",
+		},
+	},
 })
 
 -- inlay hints for type inferences and other

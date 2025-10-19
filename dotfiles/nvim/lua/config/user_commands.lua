@@ -11,6 +11,7 @@ local specs = {
 	["c"] = { name = "clang-format", prepend_dot = true },
 	["cpp"] = { name = "clang-format", prepend_dot = true },
 	["js"] = { name = "biome.json", prepend_dot = false },
+	["lua"] = { name = "stylua.toml", prepend_dot = true },
 }
 local function get_buf_lang()
 	local clients = vim.lsp.get_clients()

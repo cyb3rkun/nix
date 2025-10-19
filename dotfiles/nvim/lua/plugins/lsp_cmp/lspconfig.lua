@@ -70,22 +70,6 @@ return {
 		-- end
 
 		-- NOTE: Change the Diagnostic symbols in the gutter
-		vim.diagnostic.config({
-			signs = {
-				text = {
-					[vim.diagnostic.severity.ERROR] = " ",
-					[vim.diagnostic.severity.WARN] = " ",
-					[vim.diagnostic.severity.HINT] = " ",
-					[vim.diagnostic.severity.INFO] = " ",
-				},
-				linehl = {
-					[vim.diagnostic.severity.ERROR] = "ERROR",
-					[vim.diagnostic.severity.WARN] = "WARN",
-					[vim.diagnostic.severity.HINT] = "HINT",
-					[vim.diagnostic.severity.INFO] = "INFO",
-				},
-			},
-		})
 
 		local servers = {
 			-- "lua_ls",

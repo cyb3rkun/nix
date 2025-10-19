@@ -18,13 +18,10 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		end, { desc = "LSP: Format current buffer with" })
 	end,
 })
--- vim.lsp.config("clangd", { on_attach = on_attach, capabilities = capabilities })
--- vim.lsp.config("lua_ls", { on_attach = on_attach, capabilities = capabilities })
 
-vim.lsp.config("*", {
-	-- on_attach = on_attach,
-	capabilities = capabilities,
-})
+vim.lsp.inlay_hint.enable(true)
+
+vim.lsp.config("*", { capabilities = capabilities })
 
 local default_servers = {
 	-- "lua_ls",
@@ -59,6 +56,5 @@ vim.lsp.enable({ "lua_ls" })
 vim.lsp.enable({ "biome" })
 vim.lsp.enable({ "pylsp" })
 vim.lsp.enable({ "ast_grep" })
-
 
 print("LSP Module loaded!")

@@ -48,6 +48,8 @@ in {
 		# '')
 		git
 		wget
+		ripgrep
+		btop
 		# wezterm
 		(nxgl.nixGLVulkanMesaWrap wezterm)
 		swaylock
