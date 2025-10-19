@@ -1,6 +1,7 @@
 local autocmd = vim.api.nvim_create_autocmd
 
 vim.cmd("highlight YankHighlight guifg=#000000 guibg=#00FFFF")
+vim.cmd("highlight YankHighlightClipboard guifg=#1d202f guibg=#ff9e64")
 
 autocmd("TextYankPost", {
 	desc = "Highlight when yanking text",
@@ -10,8 +11,14 @@ autocmd("TextYankPost", {
 	}),
 
 	callback = function()
+		local reg = vim.v.register
+
+		local hgroup = "YankHighlight"
+		if reg == "+" or reg == "*" then
+			hgroup = "YankHighlightClipboard"
+		end
 		vim.highlight.on_yank({
-			higroup = "YankHighlight",
+			higroup = hgroup,
 		})
 	end,
 })
