@@ -1,4 +1,4 @@
-# .config/home-manager/hypr.nix
+# hypr.nix
 {
 	config,
 	pkgs,

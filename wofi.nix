@@ -1,4 +1,4 @@
-# .config/home-manager/wofi.nix
+# wofi.nix
 {
 	config,
 	pkgs,

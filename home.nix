@@ -1,4 +1,4 @@
-# .config/home-manager/home.nix
+# home.nix
 {
 	config,
 	pkgs,
@@ -50,6 +50,8 @@ in {
 		wget
 		# wezterm
 		(nxgl.nixGLVulkanMesaWrap wezterm)
+		swaylock
+		jujutsu
 		waybar
 		fish
 		dunst

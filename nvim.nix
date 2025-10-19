@@ -1,4 +1,4 @@
-# .config/home-manager/nvim.nix
+# nvim.nix
 {
 	config,
 	pkgs,

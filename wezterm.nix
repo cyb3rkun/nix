@@ -1,4 +1,4 @@
-# .config/home-manager/wezterm.nix
+# wezterm.nix
 {
 	config,
 	pkgs,

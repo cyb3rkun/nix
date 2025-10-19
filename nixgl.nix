@@ -21,7 +21,7 @@
 
 	nixGLVulkanWrap = pkg:
 		pkgs.runCommand "${pkg.name}-nixgl-wrapper" {} ''
-			mkdir $out
+			mkvdir $out
 			ln -s ${pkg}/* $out
 			rm $out/bin
 			mkdir $out/bin
