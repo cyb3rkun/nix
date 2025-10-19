@@ -222,22 +222,6 @@ return {
 			cmd = { "/home/cyb3rkun/.local/share/gdshader-lsp/gdshader-lsp" },
 		})
 
-		lsp.clangd.setup({
-			capabilities = capabilities,
-			-- on_attach = lsp_attach,
-
-			filetypes = { "c", "cpp", "objc", "objcpp", "cuda", "proto" },
-
-			root_dir = lsp.util.root_pattern(
-				".clang-format",
-				".editor-config",
-				".compile-commands.json",
-				".compile-flags.txt",
-				".configure.ac",
-				".git",
-				"project.godot"
-			),
-			single_file_support = true,
-		})
+		
 	end,
 }
