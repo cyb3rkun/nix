@@ -50,6 +50,7 @@ vim.opt.cursorline = true
 vim.g.rust_recommended_style = 0
 
 -- [[Set Up Diagnostics]] --
+-- TODO: Move to config.diagnostics
 vim.diagnostic.config({
 	virtual_lines = true,
 	underline = true,

@@ -6,13 +6,11 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		local bufnr = ev.buf
 		local client = vim.lsp.get_client_by_id(ev.data.client_id)
 
+		-- apply lsp_mappings
 		local keymaps = require("config.lsp_mappings")
 		keymaps(client, bufnr)
 
-		-- if client.server_capabilities.inlayHintProvider then
-		-- 	vim.lsp.inlay_hint.enable(true)
-		-- end
-
+		-- format with lsp
 		vim.api.nvim_buf_create_user_command(bufnr, "Format", function()
 			vim.lsp.buf.format()
 		end, { desc = "LSP: Format current buffer with" })

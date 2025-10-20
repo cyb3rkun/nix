@@ -14,7 +14,7 @@
 (_
   (name)@name)
 
-; TODO: Find out what is overriding and kill it hard!
+; TODO: fix this
 (_
   (
    (function_definition)

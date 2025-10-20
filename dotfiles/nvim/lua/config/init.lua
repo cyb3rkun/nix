@@ -1,6 +1,4 @@
 require("config.settings")
--- require("config.custom_functions")
--- require("config.rust")
 require("config.helpers")
 require("config.globals")
 require("config.lazy")

@@ -1,3 +1,4 @@
+-- TODO: refactor into submodule where each command has their own file
 local spec_path = vim.fn.stdpath("config") .. "/formatters"
 ---@class LangSpec
 ---@field name string
@@ -13,6 +14,7 @@ local specs = {
 	["js"] = { name = "biome.json", prepend_dot = false },
 	["lua"] = { name = "stylua.toml", prepend_dot = true },
 }
+
 local function get_buf_lang()
 	local clients = vim.lsp.get_clients()
 	if #clients == 0 then

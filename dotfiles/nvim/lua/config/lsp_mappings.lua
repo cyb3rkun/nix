@@ -1,8 +1,5 @@
 local keymap = vim.keymap.set
--- NOTE: using the keymap variable is equivelent to using vim.keymap.set("mode n=normal v=visual i=insert","key", action)
 
--- NOTE: Define a keymaps variable to store our keymaps as a function
----@diagnostic disable-next-line: unused-local
 local keymaps = function(client, bufnr)
 	-- NOTE: rename references throughout an entire file?
 	keymap("n", "<leader>rn", vim.lsp.buf.rename, {
@@ -81,34 +78,47 @@ local keymaps = function(client, bufnr)
 	)
 
 	-- NOTE: List workspace folders
-	keymap("n", "<leader>wlf", function()
-		print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-	end, {
-		buffer = bufnr,
-		desc = "[W]orkspace [L]ist [F]olders",
-	})
+	keymap(
+		"n",
+		"<leader>wlf",
+		function()
+			print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+		end,
+		{
+			buffer = bufnr,
+			desc = "[W]orkspace [L]ist [F]olders",
+		}
+	)
 
 	-- See `:help K` for why this keymap
 	-- NOTE: show documentation for what is currently under the cursor
-	keymap("n", "K", function()
-		vim.lsp.buf.hover({
-			border = "rounded"
-		})
-	end, {
-		buffer = bufnr,
-		desc = "Hover Documentation",
-	})
+	keymap(
+		"n",
+		"K",
+		function()
+			vim.lsp.buf.hover({
+				border = "rounded",
+			})
+		end,
+		{
+			buffer = bufnr,
+			desc = "Hover Documentation",
+		}
+	)
 	-- NOTE: show signature help for what is currently under the cursor
 	keymap("n", "<leader>k", vim.lsp.buf.signature_help, {
 		buffer = bufnr,
 		desc = "Signature Documentation",
 	})
 
-	keymap("n", "]d", function()
-		vim.diagnostic.jump({ count = 1, float = true })
-	end, {
-		desc = "Go to previous [D]iagnostic message",
-	})
+	keymap(
+		"n",
+		"]d",
+		function() vim.diagnostic.jump({ count = 1, float = true }) end,
+		{
+			desc = "Go to previous [D]iagnostic message",
+		}
+	)
 	-- NOTE: toggle virtual lines for diagnostics
 	Keymap("n", "<leader>sl", function()
 		local current = vim.diagnostic.config().virtual_lines
@@ -116,11 +126,14 @@ local keymaps = function(client, bufnr)
 			virtual_lines = not current,
 		})
 	end, { desc = "toggle virtual lines for Diagnostics" })
-	keymap("n", "[d", function()
-		vim.diagnostic.jump({ count = -1, float = true })
-	end, {
-		desc = "Go to next [D]iagnostic message",
-	})
+	keymap(
+		"n",
+		"[d",
+		function() vim.diagnostic.jump({ count = -1, float = true }) end,
+		{
+			desc = "Go to next [D]iagnostic message",
+		}
+	)
 
 	keymap("n", "<leader>t", vim.diagnostic.open_float, {
 		desc = "Show diagnostic [E]rror messages",

@@ -31,28 +31,28 @@ return {
 		-- )
 		--
 		---@diagnostic disable-next-line: undefined-global
-		local capabilities = require("blink.cmp").get_lsp_capabilities(capabilities)
-
-		---@diagnostic disable-next-line: unused-local
-		local opts = { noremap = true, silent = true }
-
-		vim.api.nvim_create_autocmd("LspAttach", {
-			callback = function(ev)
-				local bufnr = ev.buf
-				local client = vim.lsp.get_client_by_id(ev.data.client_id)
-
-				local keymaps = require("config.lsp_mappings")
-				keymaps(client, bufnr)
-
-				-- if client.server_capabilities.inlayHintProvider then
-				-- 	vim.lsp.inlay_hint.enable(true)
-				-- end
-
-				vim.api.nvim_buf_create_user_command(bufnr, "Format", function()
-					vim.lsp.buf.format()
-				end, { desc = "Format current buffer with lsp" })
-			end,
-		})
+		-- local capabilities = require("blink.cmp").get_lsp_capabilities(capabilities)
+		--
+		-- ---@diagnostic disable-next-line: unused-local
+		-- local opts = { noremap = true, silent = true }
+		--
+		-- vim.api.nvim_create_autocmd("LspAttach", {
+		-- 	callback = function(ev)
+		-- 		local bufnr = ev.buf
+		-- 		local client = vim.lsp.get_client_by_id(ev.data.client_id)
+		--
+		-- 		local keymaps = require("config.lsp_mappings")
+		-- 		keymaps(client, bufnr)
+		--
+		-- 		-- if client.server_capabilities.inlayHintProvider then
+		-- 		-- 	vim.lsp.inlay_hint.enable(true)
+		-- 		-- end
+		--
+		-- 		vim.api.nvim_buf_create_user_command(bufnr, "Format", function()
+		-- 			vim.lsp.buf.format()
+		-- 		end, { desc = "Format current buffer with lsp" })
+		-- 	end,
+		-- })
 		-- local lsp_attach = function(client, bufnr)
 		-- 	---@diagnostic disable-next-line: unused-local
 		-- 	opts.buffer = bufnr
@@ -71,29 +71,29 @@ return {
 
 		-- NOTE: Change the Diagnostic symbols in the gutter
 
-		local servers = {
-			-- "lua_ls",
-			"jdtls",
-			"gdscript",
-			-- "csharp_ls",
-			"bashls",
-			"marksman",
-			"html",
-			"cssls",
-			"eslint",
-			"ruff",
-			"omnisharp",
-			"gopls",
-			"fish_lsp",
-			-- "rnix",
-			"nil_ls"
-			-- "bacon-ls"
-			-- "buf",
-			-- "black"
-			-- "pylsp",
-			-- "biome", -- For JS, TS and other web languages
-			-- "neorg-interim-ls",
-		}
+		-- local servers = {
+		-- 	-- "lua_ls",
+		-- 	"jdtls",
+		-- 	"gdscript",
+		-- 	-- "csharp_ls",
+		-- 	"bashls",
+		-- 	"marksman",
+		-- 	"html",
+		-- 	"cssls",
+		-- 	"eslint",
+		-- 	"ruff",
+		-- 	"omnisharp",
+		-- 	"gopls",
+		-- 	"fish_lsp",
+		-- 	-- "rnix",
+		-- 	"nil_ls"
+		-- 	-- "bacon-ls"
+		-- 	-- "buf",
+		-- 	-- "black"
+		-- 	-- "pylsp",
+		-- 	-- "biome", -- For JS, TS and other web languages
+		-- 	-- "neorg-interim-ls",
+		-- }
 
 
 		-- NOTE: Basic LSP setup
