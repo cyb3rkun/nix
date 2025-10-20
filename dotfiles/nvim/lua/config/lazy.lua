@@ -28,6 +28,10 @@ require("lazy").setup({
 		{ import = "plugins" },
 		{ import = "plugins.lsp_cmp" },
 	},
+	-- since I started using nix home-manager, lazy can no longer write
+	-- to ~/.config/nvim, so I'm moving this to where my nvim config is in home-manager
+	-- lockfile = vim.fn.stdpath("data") .. "/lazy-lock.json", 
+	lockfile = vim.fn.expand("~/nix/dotfiles/nvim/lazy-lock.json"),
 	-- Configure any other settings here. See the documentation for more details.
 	-- colorscheme that will be used when installing plugins.
 	install = { colorscheme = { "habamax" } },
