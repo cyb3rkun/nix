@@ -35,6 +35,7 @@ local default_servers = {
 	"omnisharp",
 	"gopls",
 	"fish_lsp",
+	"qmlls",
 	-- "rnix",
 	"nil_ls",
 	-- "bacon-ls"

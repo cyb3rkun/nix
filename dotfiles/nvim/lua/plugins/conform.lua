@@ -6,8 +6,12 @@ return {
 	config = function()
 		local conform = require("conform") -- NOTE: this should not be necessary
 
-		local formatter_config_dir = vim.fn.stdpath("config") .. "/formatters"
+		local formatter_config_dir = vim.fn.stdpath("config")
+		.. "/formatters"
 		conform.formatters.beautysh = {
+			prepend_args = { "-t" },
+		}
+		conform.formatters.qmlformat = {
 			prepend_args = { "-t" },
 		}
 		-- NOTE: here we run the setup function
@@ -30,7 +34,7 @@ return {
 				bash = { "beautysh" },
 				sh = { "beautysh" },
 				-- nix = {"nixfmt"}
-				nix = {"alejandra"}
+				nix = { "alejandra" },
 			},
 			formatters = {
 				-- nixfmt = {
@@ -44,9 +48,12 @@ return {
 					},
 				},
 				["clang-format"] = {
-					command = vim.fn.stdpath("data") .. "/mason/bin/clang-format",
+					command = vim.fn.stdpath("data")
+						.. "/mason/bin/clang-format",
 					prepend_args = {
-						"-style=file:" .. formatter_config_dir .. "/clang-format",
+						"-style=file:"
+							.. formatter_config_dir
+							.. "/clang-format",
 					},
 				},
 			},
@@ -72,10 +79,24 @@ return {
 					async = false,
 					timeout_ms = 500,
 				})
+				vim.api.nvim_exec_autocmds(
+					"User",
+					{ pattern = vim.bo.filetype }
+				)
 			end,
 			-- NOTE: here we give a description as to what this keymap does
 			-- I assume this is useful for when using plugins like which-key
 			{ desc = "Format the file or range (in visual mode)" }
 		)
+
+		vim.api.nvim_create_autocmd("User", {
+			pattern = "qml",
+			callback = function ()
+				vim.cmd("normal! mz")
+				vim.cmd("normal! ggVG=")
+				vim.cmd("normal! 'z")
+				vim.notify("auto Reindent QML buffer")
+			end
+		})
 	end,
 }

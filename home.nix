@@ -52,7 +52,7 @@ in {
 		btop
 		# wezterm
 		(nxgl.nixGLVulkanMesaWrap wezterm)
-		swaylock
+		# swaylock
 		jujutsu
 		waybar
 		fish

@@ -1,7 +1,9 @@
 local autocmd = vim.api.nvim_create_autocmd
 
 vim.cmd("highlight YankHighlight guifg=#000000 guibg=#00FFFF")
-vim.cmd("highlight YankHighlightClipboard guifg=#1d202f guibg=#ff9e64")
+vim.cmd(
+	"highlight YankHighlightClipboard guifg=#1d202f guibg=#ff9e64"
+)
 
 autocmd("TextYankPost", {
 	desc = "Highlight when yanking text",
@@ -23,10 +25,15 @@ autocmd("TextYankPost", {
 	end,
 })
 autocmd("ColorScheme", {
-	group = vim.api.nvim_create_augroup("Cyb3rVim-custom-highlights", { clear = true }),
+	group = vim.api.nvim_create_augroup(
+		"Cyb3rVim-custom-highlights",
+		{ clear = true }
+	),
 	callback = function()
 		vim.cmd("highlight YankHighlight guifg=#000000 guibg=#00FFFF")
-		vim.cmd("highlight YankHighlightClipboard guifg=#1d202f guibg=#ff9e64")
+		vim.cmd(
+			"highlight YankHighlightClipboard guifg=#1d202f guibg=#ff9e64"
+		)
 	end,
 })
 
@@ -51,10 +58,16 @@ autocmd({ "VimEnter", "DirChanged" }, {
 		}
 
 		for _, root_file_path in ipairs(root_file_pattern) do
-			local file_path = current_working_directory .. root_file_path
+			local file_path = current_working_directory
+				.. root_file_path
 
-			if vim.fn.filereadable(file_path) == 1 and not server_started then
-				print("Found Godot Project root pattern... Starting LSP")
+			if
+				vim.fn.filereadable(file_path) == 1
+				and not server_started
+			then
+				print(
+					"Found Godot Project root pattern... Starting LSP"
+				)
 				vim.fn.serverstart(server_address)
 				server_started = true
 				return
@@ -67,15 +80,11 @@ autocmd({ "VimEnter", "DirChanged" }, {
 
 autocmd({ "BufWinLeave" }, {
 	pattern = "?*",
-	callback = function()
-		vim.cmd("mkview")
-	end,
+	callback = function() vim.cmd("mkview") end,
 })
 autocmd({ "BufWinEnter" }, {
 	pattern = "?*",
-	callback = function()
-		vim.cmd("silent! loadview")
-	end,
+	callback = function() vim.cmd("silent! loadview") end,
 })
 
 autocmd({ "BufEnter", "BufWinEnter", "BufWinLeave" }, {
@@ -84,7 +93,9 @@ autocmd({ "BufEnter", "BufWinEnter", "BufWinLeave" }, {
 			print("resize window")
 			local max_width = 30
 			local win_width = vim.fn.winwidth(0)
-			vim.cmd("vertical resize " .. math.min(max_width, win_width))
+			vim.cmd(
+				"vertical resize " .. math.min(max_width, win_width)
+			)
 		end
 	end,
 })

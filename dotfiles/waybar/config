@@ -399,8 +399,8 @@
 		"on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
 		"on-click-right": "pavucontrol",
 		//on-click: "${wpctl} set-mute @DEFAULT_AUDIO_SINK@ toggle";
-		"on-scroll-down": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.04-",
-		"on-scroll-up": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.04+",
+		"on-scroll-down": "wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 5%-",
+		"on-scroll-up": "wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 5%+",
 		"format": "{icon} {volume}",
 		// <span foreground='#fab387'>{icon}</span>
 		"format-muted": " ",
@@ -422,8 +422,8 @@
 	"wireplumber#mic": {
 		"note-type": "Audio/Source",
 		"on-click": "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle",
-		"on-scroll-down": "wpctl set-volume @DEFAULT_AUDIO_SOURCE@ 0.04-",
-		"on-scroll-up": "wpctl set-volume @DEFAULT_AUDIO_SOURCE@ 0.04+",
+		"on-scroll-down": "wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SOURCE@ 5%-",
+		"on-scroll-up": "wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SOURCE@ 5%+",
 		// "on-click-right": "amixer sset Master toggle 1>/dev/null",
 		//on-click: "${wpctl} set-mute @DEFAULT_AUDIO_SINK@ toggle";
 		"format": "{}",
