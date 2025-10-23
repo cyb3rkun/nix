@@ -24,7 +24,10 @@ return {
 						},
 					},
 					library = {
-						{ path = "wezterm-types", mods = { "wezterm" } },
+						{
+							path = "wezterm-types",
+							mods = { "wezterm" },
+						},
 					},
 				},
 			},
@@ -54,7 +57,11 @@ return {
 				-- C-CR is not working as a select_and_accept input
 				["<C-CR>"] = { "select_and_accept", "fallback" },
 				["<C-y>"] = { "select_and_accept", "fallback" },
-				["<C-space>"] = { "show", "show_documentation", "hide_documentation" },
+				["<C-space>"] = {
+					"show",
+					"show_documentation",
+					"hide_documentation",
+				},
 				["<C-h>"] = { "hide", "fallback" },
 
 				["<A-j>"] = {
@@ -74,9 +81,16 @@ return {
 				["<C-n>"] = { "select_next", "fallback" },
 
 				["<C-b>"] = { "scroll_documentation_up", "fallback" },
-				["<C-f>"] = { "scroll_documentation_down", "fallback" },
+				["<C-f>"] = {
+					"scroll_documentation_down",
+					"fallback",
+				},
 
-				["<C-s>"] = { "show_signature", "hide_signature", "fallback" },
+				["<C-s>"] = {
+					"show_signature",
+					"hide_signature",
+					"fallback",
+				},
 			},
 			snippets = { preset = "luasnip" },
 
@@ -84,7 +98,13 @@ return {
 				enabled = true,
 			},
 			sources = {
-				default = { "lazydev", "lsp", "buffer", "path", "snippets" },
+				default = {
+					"lsp",
+					"snippets",
+					"buffer",
+					"path",
+					"lazydev",
+				},
 				providers = {
 					lsp = {
 						name = "lsp",
@@ -122,7 +142,11 @@ return {
 					-- C-CR is not working as a select_and_accept input
 					["<C-CR>"] = { "select_and_accept" },
 					["<C-h>"] = { "hide", "fallback" },
-					["<C-space>"] = { "show", "show_documentation", "hide_documentation" },
+					["<C-space>"] = {
+						"show",
+						"show_documentation",
+						"hide_documentation",
+					},
 
 					["<Tab>"] = {
 						"snippet_forward",
@@ -137,7 +161,11 @@ return {
 					["<C-Up>"] = { "scroll_documentation_up" },
 					["<C-Down>"] = { "scroll_documentation_up" },
 
-					["<C-s>"] = { "show_signature", "hide_signature", "fallback" },
+					["<C-s>"] = {
+						"show_signature",
+						"hide_signature",
+						"fallback",
+					},
 				},
 			},
 			completion = {
